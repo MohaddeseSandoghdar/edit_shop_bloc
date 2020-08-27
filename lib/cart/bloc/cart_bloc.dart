@@ -45,11 +45,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         }
       }
     } else if (event is DecreaseItem) {
-       await Future.delayed(Duration(seconds: 1));
       final currentState = state;
       if (currentState is CartLoaded) {
         yield CartLoading();
         try {
+           await Future.delayed(Duration(seconds: 1));
           var index = currentState.listReception
               .indexWhere((item) => item.id == event.item.id);
           if (index < 0) {
